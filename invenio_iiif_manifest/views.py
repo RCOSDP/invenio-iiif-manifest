@@ -11,8 +11,8 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, render_template
 from flask_babelex import gettext as _
-from invenio_rest import ContentNegotiatedMethodView
 from flask import current_app, request, url_for, jsonify
+
 
 blueprint = Blueprint(
     'invenio_iiif_manifest',
@@ -21,8 +21,9 @@ blueprint = Blueprint(
     static_folder='static',
 )
 
+
 @blueprint.route("/record/<string:pid>/iiif/manifest.json")
-def index(pid):
+def manifest_json(pid):
     """Render a basic view."""
 
     result = {
