@@ -7,24 +7,19 @@ from invenio_iiif.utils import ui_iiif_image_url
 from api import MultiLanguageMetadata
 from api import SequentialManifestGenerator
 
+from . import config
+
 
 class invenioIIIFManifest():
-	image_api_server = 'http://localhost:5000/'
-	image_api_prefix = 'iiif/v2/'
 	manifest_output = './output/'
-	image_api_version = 2.0
-	image_api_complian = 2
+
 
 	def __init__(self):
 		self.factory = ManifestFactory()
-
-		self.factory.set_base_prezi_uri(self.image_api_server)
-
-		api_base_url = self.image_api_server+self.image_api_prefix
-		self.factory.set_base_image_uri(api_base_url)
-
+		self.factory.set_base_prezi_uri(IIIF_MANIFEST_IMAGE_API_SERVER)
+		self.factory.set_base_image_uri(IIIF_MANIFEST_IMAGE_API_BASE_URI)
 		self.factory.set_base_prezi_dir("./output/")
-		self.factory.set_iiif_image_info(self.image_api_version, self.image_api_complian)
+		self.factory.set_iiif_image_info(IIIF_MANIFEST_IMAGE_API_VERSION, IIIF_MANIFEST_IMAGE_API_COMPLIAN)
 		self.factory.set_debug("warn")
 		self.manifest = self.factory.manifest(ident='manifest',label="Example Manifest")
 		self.manifest.viewingDirection = "left-to-right"

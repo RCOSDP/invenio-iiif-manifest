@@ -7,11 +7,19 @@
 
 """Invenio module that adds more fun to the platform."""
 
-# TODO: This is an example file. Remove it if your package does not use any
-# extra configuration variables.
 
-INVENIO_IIIF_MANIFEST_DEFAULT_VALUE = 'foobar'
-"""Default value for the application."""
 
 INVENIO_IIIF_MANIFEST_BASE_TEMPLATE = 'invenio_iiif_manifest/base.html'
 """Default base template for the demo page."""
+
+
+
+IIIF_MANIFEST_IMAGE_API_SERVER = 'http://localhost:5000/'
+IIIF_MANIFEST_IMAGE_API_PREFIX = 'iiif/v2/'
+IIIF_MANIFEST_IMAGE_API_VERSION = 2.0
+IIIF_MANIFEST_IMAGE_API_COMPLIAN = 2
+IIIF_MANIFEST_IMAGE_API_BASE_URI = IIIF_MANIFEST_IMAGE_API_SERVER + IIIF_MANIFEST_IMAGE_API_PREFIX
+
+IIIF_MANIFEST_REST_ENDPOINTS = {
+
+}

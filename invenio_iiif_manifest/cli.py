@@ -15,6 +15,5 @@ if __name__ == "__main__":
         manifest.add_metadata('label','foo','en')
         for identifier in identifiers:
             manifest.add_canvas(identifier)
-            
+
         manifest.generate_manifest()
-        #manifest.set_label("example manifest")

@@ -9,7 +9,7 @@
 
 from __future__ import absolute_import, print_function
 
-from .ext import invenioiiifmanifest
+from .ext import InvenioIIIFManifest
 from .version import __version__
 
-__all__ = ('__version__', 'invenioiiifmanifest')
+__all__ = ('__version__', 'InvenioIIIFManifest')

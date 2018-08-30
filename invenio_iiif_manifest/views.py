@@ -2,18 +2,17 @@
 #
 # Copyright (C) 2018 NII.
 #
-# invenio-iiif-manifest is free software; you can redistribute it and/or modify it
-# under the terms of the MIT License; see LICENSE file for more details.
+# invenio-iiif-manifest is free software; you can redistribute it and/or modify
+# it under the terms of the MIT License; see LICENSE file for more details.
 
 """Invenio module that adds more fun to the platform."""
-
-# TODO: This is an example file. Remove it if you do not need it, including
-# the templates and static folders as well as the test case.
 
 from __future__ import absolute_import, print_function
 
 from flask import Blueprint, render_template
 from flask_babelex import gettext as _
+from invenio_rest import ContentNegotiatedMethodView
+from flask import current_app, request, url_for, jsonify
 
 blueprint = Blueprint(
     'invenio_iiif_manifest',
@@ -22,10 +21,14 @@ blueprint = Blueprint(
     static_folder='static',
 )
 
-
-@blueprint.route("/")
-def index():
+@blueprint.route("/record/<string:pid>/iiif/manifest.json")
+def index(pid):
     """Render a basic view."""
-    return render_template(
-        "invenio_iiif_manifest/index.html",
-        module_name=_('invenio-iiif-manifest'))
+
+    result = {
+        "Result":{
+        "pid": pid
+        }
+    }
+
+    return jsonify(ResultSet=result)
