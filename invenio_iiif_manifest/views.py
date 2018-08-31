@@ -29,6 +29,6 @@ def manifest_json(pid):
     """Render a basic view."""
 
     result = generate_iiif_manifest(pid)
+    #print(result)
 
-
-    return jsonify(ResultSet=result)
+    return jsonify(result)

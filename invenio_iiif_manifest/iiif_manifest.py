@@ -6,17 +6,17 @@ from . import config
 
 
 class invenioIIIFManifest():
-	manifest_output = './output/'
+	'''generate iiif manifest for a record.'''
 
-
-	def __init__(self):
+	def __init__(self,label='No Title'):
 		self.factory = ManifestFactory()
 		self.factory.set_base_prezi_uri(config.IIIF_MANIFEST_IMAGE_API_SERVER)
 		self.factory.set_base_image_uri(config.IIIF_MANIFEST_IMAGE_API_BASE_URI)
 		#self.factory.set_base_prezi_dir("./output/")
-		self.factory.set_iiif_image_info(config.IIIF_MANIFEST_IMAGE_API_VERSION, config.IIIF_MANIFEST_IMAGE_API_COMPLIAN)
+		#self.factory.set_iiif_image_info(config.IIIF_MANIFEST_IMAGE_API_VERSION, config.IIIF_MANIFEST_IMAGE_API_COMPLIAN)
+		self.factory.set_iiif_image_info(version=config.IIIF_MANIFEST_IMAGE_API_VERSION, lvl=config.IIIF_MANIFEST_IMAGE_API_COMPLIAN)
 		self.factory.set_debug("warn")
-		self.manifest = self.factory.manifest(ident='manifest',label="Example Manifest")
+		self.manifest = self.factory.manifest(ident='identifier/manifest',label=label)
 		self.manifest.viewingDirection = "left-to-right"
 		self.metadata = MultiLanguageMetadata()
 		self.page = 1
@@ -26,7 +26,8 @@ class invenioIIIFManifest():
 		self.manifest.description = str(description)
 
 	def set_viewing_direction(self, direcsion):
-		self.manifest.viewingDirection = direcsion
+		if direcsion in ['left-to-right','right-to-left','top-to-bottom','bottom-to-top']:
+			self.manifest.viewingDirection = direcsion
 
 	def add_metadata(self, key, value, language):
 		self.metadata.add_meta(key, value, language)
@@ -35,8 +36,7 @@ class invenioIIIFManifest():
 		if self.metadata != None:
 			self.manifest.set_metadata(self.metadata.export())
 
-			#self.manifest.toFile(compact=False)
-			return self.manifest.toJSON()
+			return self.manifest.toJSON(top=True)
 
 	def add_canvas(self, identifier):
 		if self.sequence == None:
@@ -44,8 +44,8 @@ class invenioIIIFManifest():
 
 		canvas = self.sequence.canvas(ident="page-%s" % str(self.page), label="Page %s" % str(self.page))
 
-		anno = canvas.annotation()
-		img = anno.image(identifier, iiif=True)
+		canvas_anno = canvas.annotation()
+		img = canvas_anno.image(identifier, iiif=True)
 		img.set_hw_from_iiif()
 
 		canvas.height = img.height
@@ -53,6 +53,8 @@ class invenioIIIFManifest():
 		self.page += 1
 
 class MultiLanguageMetadata():
+	'''generate multi language metadata for iiif manifest.'''
+
 	def __init__(self):
 		self.label = []
 		self.value = []
@@ -78,6 +80,8 @@ class MultiLanguageMetadata():
 
 
 class SequentialManifestGenerator():
+	'''generate iiif manifest depending on sequential image objects.'''
+
 	def __init__(self, sequence):
 		self.sequence = sequence
 		self.page = 0;
@@ -85,13 +89,10 @@ class SequentialManifestGenerator():
 	def _add_image_annotation(self, canvas, imagefile):
 		annotation = canvas.annotation()
 
-		import inspect
-		#print(type(annotation))
-		#print(inspect.getsource(annotation.image))
 		image = annotation.image("p%s" % self.page, iiif=True, extention="png")
 
 		image.set_hw_from_file(imagefile)
-		#print(type(image))
+
 		canvas.height = image.height
 		canvas.width = image.width
 
