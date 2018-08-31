@@ -36,7 +36,7 @@ class invenioIIIFManifest():
 			self.manifest.set_metadata(self.metadata.export())
 
 			#self.manifest.toFile(compact=False)
-			return self.manifest.toString(compact=False)
+			return self.manifest.toJSON()
 
 	def add_canvas(self, identifier):
 		if self.sequence == None:
