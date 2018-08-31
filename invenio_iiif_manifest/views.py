@@ -13,6 +13,8 @@ from flask import Blueprint, render_template
 from flask_babelex import gettext as _
 from flask import current_app, request, url_for, jsonify
 
+from .api import generate_iiif_manifest
+
 
 blueprint = Blueprint(
     'invenio_iiif_manifest',
@@ -26,10 +28,7 @@ blueprint = Blueprint(
 def manifest_json(pid):
     """Render a basic view."""
 
-    result = {
-        "Result":{
-        "pid": pid
-        }
-    }
+    result = generate_iiif_manifest(pid)
+
 
     return jsonify(ResultSet=result)
