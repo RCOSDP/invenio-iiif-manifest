@@ -16,6 +16,14 @@ from flask import current_app, request, url_for, jsonify
 from .api import generate_iiif_manifest
 
 
+def manifest_json(pid, record, template=None, **kwargs):
+    """Render a basic view."""
+
+    #result = generate_iiif_manifest(pid.pid_value)
+
+    return jsonify(generate_iiif_manifest(pid, record))
+
+'''
 blueprint = Blueprint(
     'invenio_iiif_manifest',
     __name__,
@@ -29,6 +37,6 @@ def manifest_json(pid):
     """Render a basic view."""
 
     result = generate_iiif_manifest(pid)
-    #print(result)
 
     return jsonify(result)
+'''
