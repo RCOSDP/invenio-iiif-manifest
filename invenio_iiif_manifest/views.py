@@ -19,24 +19,5 @@ from .api import generate_iiif_manifest
 def manifest_json(pid, record, template=None, **kwargs):
     """Render a basic view."""
 
-    #result = generate_iiif_manifest(pid.pid_value)
 
     return jsonify(generate_iiif_manifest(pid, record))
-
-'''
-blueprint = Blueprint(
-    'invenio_iiif_manifest',
-    __name__,
-    template_folder='templates',
-    static_folder='static',
-)
-
-
-@blueprint.route("/record/<string:pid>/iiif/manifest.json")
-def manifest_json(pid):
-    """Render a basic view."""
-
-    result = generate_iiif_manifest(pid)
-
-    return jsonify(result)
-'''
