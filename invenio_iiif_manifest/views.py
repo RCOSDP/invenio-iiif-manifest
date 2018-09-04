@@ -19,5 +19,4 @@ from .api import generate_iiif_manifest
 def manifest_json(pid, record, template=None, **kwargs):
     """Render a basic view."""
 
-
     return jsonify(generate_iiif_manifest(pid, record))
