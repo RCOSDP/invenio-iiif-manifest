@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2018 NII.
+#
+# invenio-iiif-manifest is free software; you can redistribute it and/or modify
+# it under the terms of the MIT License; see LICENSE file for more details.
+
 from .prezi_ext import ManifestFactory
 import json
 import glob
@@ -12,8 +19,6 @@ class invenioIIIFManifest():
 		self.factory = ManifestFactory()
 		self.factory.set_base_prezi_uri(config.IIIF_MANIFEST_IMAGE_API_SERVER)
 		self.factory.set_base_image_uri(config.IIIF_MANIFEST_IMAGE_API_BASE_URI)
-		#self.factory.set_base_prezi_dir("./output/")
-		#self.factory.set_iiif_image_info(config.IIIF_MANIFEST_IMAGE_API_VERSION, config.IIIF_MANIFEST_IMAGE_API_COMPLIAN)
 		self.factory.set_iiif_image_info(version=config.IIIF_MANIFEST_IMAGE_API_VERSION, lvl=config.IIIF_MANIFEST_IMAGE_API_COMPLIAN)
 		self.factory.set_debug("warn")
 		self.manifest = self.factory.manifest(ident='identifier/manifest',label=label)

@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2018 NII.
+#
+# invenio-iiif-manifest is free software; you can redistribute it and/or modify
+# it under the terms of the MIT License; see LICENSE file for more details.
+
 from invenio_files_rest.models import Bucket, Location, ObjectVersion
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_records.models import RecordMetadata

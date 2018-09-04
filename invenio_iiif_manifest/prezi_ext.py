@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2018 NII.
+#
+# invenio-iiif-manifest is free software; you can redistribute it and/or modify
+# it under the terms of the MIT License; see LICENSE file for more details.
+
 from iiif_prezi.factory import ManifestFactory as _ManifestFactory
 from iiif_prezi.factory import Annotation as _Annotation
 from iiif_prezi.factory import Image as _Image

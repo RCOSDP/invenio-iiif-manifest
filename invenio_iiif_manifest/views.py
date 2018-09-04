@@ -14,9 +14,15 @@ from flask_babelex import gettext as _
 from flask import current_app, request, url_for, jsonify
 
 from .api import generate_iiif_manifest
+from .api import can_generate
 
 
 def manifest_json(pid, record, template=None, **kwargs):
-    """Render a basic view."""
+    """Render a iiif manifest.json."""
 
-    return jsonify(generate_iiif_manifest(pid, record))
+    files = record.dumps()['_files']
+
+    if can_generate(files):
+        return jsonify(generate_iiif_manifest(pid, files))
+    else:
+        return jsonify({'err': 'can not generate iiif manifest becouse of no adaptable image files exist.'})
