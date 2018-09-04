@@ -25,10 +25,13 @@ def generate_iiif_manifest(pid, files):
 	'''generate iiif manifest from image files on the target record from pid'''
 
 	identifiers = []
-	#files = record.dumps()['_files']
 	for file in files:
-		identifier = ':'.join([file['bucket'], file['version_id'], file['key']])
-		identifiers.append(identifier)
+		root, ext = os.path.splitext(file['key'])
+		if ext.lower() in config.IIIF_MANIFEST_ADAPTABLE_EXT:
+			identifier = ':'.join(
+				[file['bucket'], file['version_id'], file['key']]
+			)
+			identifiers.append(identifier)
 
 	manifest = invenioIIIFManifest('PID: ' + pid.pid_value)
 	manifest.add_metadata('pid',str(pid),'en')
