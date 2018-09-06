@@ -25,4 +25,4 @@ def manifest_json(pid, record, template=None, **kwargs):
     if can_generate(files):
         return jsonify(generate_iiif_manifest(pid, files))
     else:
-        return jsonify({'err': 'can not generate iiif manifest becouse of no adaptable image files exist.'})
+        return jsonify({'message': 'The requested URL was not found on the server.', 'status':404})
