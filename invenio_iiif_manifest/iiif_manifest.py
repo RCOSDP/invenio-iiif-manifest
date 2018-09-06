@@ -116,7 +116,6 @@ class InvenioIIIFSequentialManifestGenerator(SequentialManifestGenerator):
 	def _add_image_annotation(self, canvas, file_obj):
 		annotation = canvas.annotation()
 
-		#identifier = ":".join(file_obj.bucket, file_obj.version, file_obj.key)
 		ui_iiif_image_url(file_obj)
 		image = annotation.image(identifier, iiif=True)
 

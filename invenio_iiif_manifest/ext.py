@@ -12,7 +12,6 @@ from __future__ import absolute_import, print_function
 from flask_babelex import gettext as _
 
 from . import config
-#from .views import blueprint
 
 
 class InvenioIIIFManifest(object):
@@ -27,12 +26,10 @@ class InvenioIIIFManifest(object):
     def init_app(self, app):
         """Flask application initialization."""
         self.init_config(app)
-        #app.register_blueprint(blueprint)
         app.extensions['invenio-iiif-manifest'] = self
 
     def init_config(self, app):
         """Initialize configuration."""
-        # Use theme's base template if theme is installed
 
         if 'BASE_TEMPLATE' in app.config:
             app.config.setdefault(
@@ -40,7 +37,6 @@ class InvenioIIIFManifest(object):
                 app.config['BASE_TEMPLATE'],
             )
 
-        #'''
         with_endpoints = app.config.get('RECORDS_UI_ENDPOINTS')
         for k in dir(config):
             if k.startswith('INVENIO_IIIF_MANIFEST_'):
@@ -51,4 +47,3 @@ class InvenioIIIFManifest(object):
                     if k == n and with_endpoints:
                         app.config.setdefault(n, {})
                         app.config[n].update(getattr(config, k))
-        #'''
