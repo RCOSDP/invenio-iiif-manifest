@@ -12,29 +12,39 @@ import glob
 from . import config
 
 
-class invenioIIIFManifest():
+class InvenioIIIFManifest():
 	'''generate iiif manifest for a record.'''
 
 	def __init__(self,label='No Title'):
 		self.factory = ManifestFactory()
 		self.factory.set_base_prezi_uri(config.IIIF_MANIFEST_IMAGE_API_SERVER)
 		self.factory.set_base_image_uri(config.IIIF_MANIFEST_IMAGE_API_BASE_URI)
-		self.factory.set_iiif_image_info(version=config.IIIF_MANIFEST_IMAGE_API_VERSION, lvl=config.IIIF_MANIFEST_IMAGE_API_COMPLIAN)
-		self.factory.set_debug("warn")
-		self.manifest = self.factory.manifest(ident='identifier/manifest',label=label)
+		self.factory.set_iiif_image_info(
+			version=config.IIIF_MANIFEST_IMAGE_API_VERSION,
+			lvl=config.IIIF_MANIFEST_IMAGE_API_COMPLIAN
+		)
+
+		# 'warn' will print warnings, default level
+		# 'error' will turn off warnings
+		# 'error_on_warning' will make warnings into errors
+		self.factory.set_debug("error")
+		self.manifest = self.factory.manifest(
+			ident='identifier/manifest',
+			label=label
+		)
 		self.manifest.viewingDirection = "left-to-right"
 		self.metadata = MultiLanguageMetadata()
 		self.page = 1
 		self.sequence = None
 
-	def set_description(self, description):
+	def description(self, description):
 		self.manifest.description = str(description)
 
-	def set_viewing_direction(self, direcsion):
+	def viewing_direction(self, direcsion):
 		if direcsion in ['left-to-right','right-to-left','top-to-bottom','bottom-to-top']:
 			self.manifest.viewingDirection = direcsion
 
-	def add_metadata(self, key, value, language):
+	def multi_lang_metadata(self, key, value, language):
 		self.metadata.add_meta(key, value, language)
 
 	def generate_manifest(self):

@@ -8,10 +8,11 @@
 import os
 
 from .models import pid2iiif_ideitifier
-from .iiif_manifest import invenioIIIFManifest
+from .iiif_manifest import InvenioIIIFManifest
 from . import config
 
 def can_generate(files):
+	"check if there are image files in a record"
 	for file in files:
 		root, ext = os.path.splitext(file['key'])
 
@@ -21,7 +22,7 @@ def can_generate(files):
 	return False
 
 
-def generate_iiif_manifest(pid, files):
+def generate_iiif_manifest(pid, record_meta, files):
 	'''generate iiif manifest from image files on the target record from pid'''
 
 	identifiers = []
@@ -33,10 +34,10 @@ def generate_iiif_manifest(pid, files):
 			)
 			identifiers.append(identifier)
 
-	manifest = invenioIIIFManifest('PID: ' + pid.pid_value)
-	manifest.add_metadata('pid',str(pid),'en')
-	manifest.set_description('This collection is automatically genarated from Invenio.')
-	manifest.set_viewing_direction('left-to-right')
+	manifest = InvenioIIIFManifest(record_meta['title'])
+	manifest.description(record_meta['description'])
+	# manifest.multi_lang_metadata('pid',str(pid),'en')
 	for identifier in identifiers:
 		manifest.add_canvas(identifier)
+
 	return manifest.generate_manifest()
