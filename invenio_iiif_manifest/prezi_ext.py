@@ -9,7 +9,7 @@ from iiif_prezi.factory import ManifestFactory as _ManifestFactory
 from iiif_prezi.factory import Annotation as _Annotation
 from iiif_prezi.factory import Image as _Image
 from iiif_prezi.factory import ImageService
-'''This code was built for file's extention.'''
+'''This code was built for file's extension.'''
 
 
 class ManifestFactory(_ManifestFactory):
@@ -19,25 +19,25 @@ class ManifestFactory(_ManifestFactory):
             self.assert_base_prezi_uri()
         return Annotation(self, ident, label=label)
 
-    def image(self, ident, label="", iiif=False, region='full', size='full', extention="jpg"):
+    def image(self, ident, label="", iiif=False, region='full', size='full', extension="jpg"):
         """Create an Image."""
 
         if not ident:
             raise RequirementError(
                 "Images must have a real identity (Image['@id'] cannot be empty)")
-        return Image(self, ident, label, iiif, region, size, extention=extention)
+        return Image(self, ident, label, iiif, region, size, extension=extension)
 
 
 class Annotation(_Annotation):
-    def image(self, ident="", label="", iiif=False, extention='jpg'):
+    def image(self, ident="", label="", iiif=False, extension='jpg'):
         """Create Image body."""
-        img = self._factory.image(ident, label, iiif, extention=extention)
+        img = self._factory.image(ident, label, iiif, extension=extension)
         self.resource = img
         return img
 
 
 class Image(_Image):
-    def __init__(self, factory, ident, label, iiif=False, region='full', size='full',extention='jpg'):
+    def __init__(self, factory, ident, label, iiif=False, region='full', size='full',extension='jpg'):
         """Initialize Image resource."""
         self._factory = factory
         self.type = self.__class__._type
@@ -63,9 +63,9 @@ class Image(_Image):
 
             if factory.default_image_api_version[0] == '1':
                 self.id = factory.default_base_image_uri + '/' + \
-                    ident + '/%s/%s/0/native.%s' % (region, size, extention)
+                    ident + '/%s/%s/0/native.%s' % (region, size, extension)
             else:
                 self.id = factory.default_base_image_uri + '/' + \
-                    ident + '/%s/%s/0/default.%s' % (region, size, extention)
+                    ident + '/%s/%s/0/default.%s' % (region, size, extension)
             self._identifier = ident
-            self.format = mime_type[extention]
+            self.format = mime_type[extension]

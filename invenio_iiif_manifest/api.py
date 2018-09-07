@@ -5,7 +5,7 @@
 # invenio-iiif-manifest is free software; you can redistribute it and/or modify
 # it under the terms of the MIT License; see LICENSE file for more details.
 
-import os
+from os.path import splitext
 
 from .models import pid2iiif_ideitifier
 from .iiif_manifest import InvenioIIIFManifest
@@ -14,7 +14,7 @@ from . import config
 def can_generate(files):
 	"check if there are image files in a record"
 	for file in files:
-		root, ext = os.path.splitext(file['key'])
+		root, ext = splitext(file['key'])
 
 		if ext.lower() in config.IIIF_MANIFEST_ADAPTABLE_EXT:
 			return True
@@ -27,7 +27,7 @@ def generate_iiif_manifest(pid, record_meta, files):
 
 	identifiers = []
 	for file in files:
-		root, ext = os.path.splitext(file['key'])
+		root, ext = splitext(file['key'])
 		if ext.lower() in config.IIIF_MANIFEST_ADAPTABLE_EXT:
 			identifier = ':'.join(
 				[file['bucket'], file['version_id'], file['key']]

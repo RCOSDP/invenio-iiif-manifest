@@ -41,6 +41,7 @@ class InvenioIIIFManifest():
 		self.page = 1
 		self.sequence = None
 
+
 	def description(self, description):
 		self.manifest.description = str(description)
 
@@ -70,7 +71,7 @@ class InvenioIIIFManifest():
 		canvas = self.sequence.canvas(ident="page-%s" % str(self.page), label="Page %s" % str(self.page))
 
 		canvas_anno = canvas.annotation()
-		img = canvas_anno.image(identifier, iiif=True)
+		img = canvas_anno.image(identifier, iiif=True, extension="png")
 		img.set_hw_from_iiif()
 
 		canvas.height = img.height

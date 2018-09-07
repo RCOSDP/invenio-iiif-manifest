@@ -8,10 +8,8 @@
 """Invenio module that adds more fun to the platform."""
 
 
-
 INVENIO_IIIF_MANIFEST_BASE_TEMPLATE = 'invenio_iiif_manifest/base.html'
 """Default base template for the demo page."""
-
 
 
 IIIF_MANIFEST_IMAGE_API_SERVER = 'http://localhost:5000/'
