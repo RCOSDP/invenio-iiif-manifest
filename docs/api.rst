@@ -10,8 +10,8 @@ API Docs
 .. automodule:: invenio_iiif_manifest.ext
    :members:
 
-Views
------
+Restful
+-------
 
-.. automodule:: invenio_iiif_manifest.views
+.. automodule:: invenio_iiif_manifest.restful
    :members:

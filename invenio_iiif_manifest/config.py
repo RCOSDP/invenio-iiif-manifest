@@ -30,7 +30,7 @@ RECORDS_UI_ENDPOINTS = {
     'recid_iiif_manifest': {
         'pid_type': 'recid',
         'route': '/record/<pid_value>/iiif/manifest.json',
-        'view_imp': 'invenio_iiif_manifest.views.manifest_json',
+        'view_imp': 'invenio_iiif_manifest.restful.manifest_json',
         'record_class': 'invenio_records_files.api:Record'
     },
 }
