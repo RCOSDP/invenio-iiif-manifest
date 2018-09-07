@@ -15,7 +15,7 @@ from . import config
 class InvenioIIIFManifest():
 	'''generate iiif manifest for a record.'''
 
-	def __init__(self,label='No Title'):
+	def __init__(self, label):
 		self.factory = ManifestFactory()
 		self.factory.set_base_prezi_uri(config.IIIF_MANIFEST_IMAGE_API_SERVER)
 		self.factory.set_base_image_uri(config.IIIF_MANIFEST_IMAGE_API_BASE_URI)
@@ -27,6 +27,10 @@ class InvenioIIIFManifest():
 		# 'warn' will print warnings, default level
 		# 'error' will turn off warnings
 		# 'error_on_warning' will make warnings into errors
+
+		if len(label) == 0:
+			label = 'No Title'
+
 		self.factory.set_debug("error")
 		self.manifest = self.factory.manifest(
 			ident='identifier/manifest',
@@ -41,7 +45,13 @@ class InvenioIIIFManifest():
 		self.manifest.description = str(description)
 
 	def viewing_direction(self, direcsion):
-		if direcsion in ['left-to-right','right-to-left','top-to-bottom','bottom-to-top']:
+		direcsions = [
+			'left-to-right',
+			'right-to-left',
+			'top-to-bottom',
+			'bottom-to-top'
+		]
+		if direcsion in direcsions:
 			self.manifest.viewingDirection = direcsion
 
 	def multi_lang_metadata(self, key, value, language):

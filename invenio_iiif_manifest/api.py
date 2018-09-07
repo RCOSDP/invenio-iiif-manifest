@@ -36,7 +36,7 @@ def generate_iiif_manifest(pid, record_meta, files):
 
 	manifest = InvenioIIIFManifest(record_meta['title'])
 	manifest.description(record_meta['description'])
-	# manifest.multi_lang_metadata('pid',str(pid),'en')
+	manifest.multi_lang_metadata('system_message', 'This iiif manifest json is generated via Invenio using record metadata which has image files' ,'en')
 	for identifier in identifiers:
 		manifest.add_canvas(identifier)
 

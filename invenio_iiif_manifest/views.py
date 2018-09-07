@@ -21,8 +21,9 @@ def manifest_json(pid, record, template=None, **kwargs):
     """Render a iiif manifest.json."""
 
     files = record.dumps()['_files']
+    record_meta = record.dumps()['_deposit']
 
     if can_generate(files):
-        return jsonify(generate_iiif_manifest(pid, files))
+        return jsonify(generate_iiif_manifest(pid, record_meta, files))
     else:
         return jsonify({'message': 'The requested URL was not found on the server.', 'status':404})
