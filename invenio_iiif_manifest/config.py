@@ -13,16 +13,20 @@ INVENIO_IIIF_MANIFEST_BASE_TEMPLATE = 'invenio_iiif_manifest/base.html'
 
 
 IIIF_MANIFEST_IMAGE_API_SERVER = 'http://localhost:5000/'
+"""Server name for IIIF Image API"""
+
 IIIF_MANIFEST_IMAGE_API_PREFIX = 'iiif/v2/'
+"""Prefix for IIIF Image API"""
+
 IIIF_MANIFEST_IMAGE_API_VERSION = 2.0
+"""Version of IIIF Manifest. """
+
 IIIF_MANIFEST_IMAGE_API_COMPLIAN = 2
+"""Complian of IIIF Manifest."""
+
 IIIF_MANIFEST_IMAGE_API_BASE_URI = IIIF_MANIFEST_IMAGE_API_SERVER + IIIF_MANIFEST_IMAGE_API_PREFIX
+
 IIIF_MANIFEST_ADAPTABLE_EXT = ['.jpg','.jpeg','.png','.gif','.tif','tiff']
-
-IIIF_MANIFEST_REST_ENDPOINTS = {
-
-}
-
 
 RECORDS_UI_ENDPOINTS = {
     'recid_iiif_manifest': {
