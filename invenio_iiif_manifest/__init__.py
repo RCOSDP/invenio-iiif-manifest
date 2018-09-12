@@ -11,5 +11,6 @@ from __future__ import absolute_import, print_function
 
 from .ext import InvenioIIIFManifest
 from .version import __version__
+from . import restful 
 
 __all__ = ('__version__', 'InvenioIIIFManifest')
