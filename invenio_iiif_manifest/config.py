@@ -26,6 +26,9 @@ IIIF_MANIFEST_IMAGE_API_COMPLIAN = 2
 
 IIIF_MANIFEST_IMAGE_API_BASE_URI = IIIF_MANIFEST_IMAGE_API_SERVER + IIIF_MANIFEST_IMAGE_API_PREFIX
 
+IIIF_MANIFEST_IMAGE_API_IDENTIFIER = 'pid:key'
+"""Identifier of file object on IIIF Image API. You can select from 'default', 'pid:key'. 'default' is <bukcet:version_id:key> come from invenio-iiif module."""
+
 IIIF_MANIFEST_ADAPTABLE_EXT = ['.jpg','.jpeg','.png','.gif','.tif','tiff']
 
 RECORDS_UI_ENDPOINTS = {
