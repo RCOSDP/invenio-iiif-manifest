@@ -2,8 +2,8 @@
 #
 # Copyright (C) 2018 NII.
 #
-# invenio-iiif-manifest is free software; you can redistribute it and/or modify it
-# under the terms of the MIT License; see LICENSE file for more details.
+# invenio-iiif-manifest is free software; you can redistribute it and/or modify
+# it under the terms of the MIT License; see LICENSE file for more details.
 
 """Module tests."""
 
@@ -11,7 +11,7 @@ from __future__ import absolute_import, print_function
 
 from flask import Flask
 
-from invenio_iiif_manifest import invenioiiifmanifest
+from invenio_iiif_manifest import InvenioIIIFManifest
 
 
 def test_version():
@@ -23,11 +23,11 @@ def test_version():
 def test_init():
     """Test extension initialization."""
     app = Flask('testapp')
-    ext = invenioiiifmanifest(app)
+    ext = InvenioIIIFManifest(app)
     assert 'invenio-iiif-manifest' in app.extensions
 
     app = Flask('testapp')
-    ext = invenioiiifmanifest()
+    ext = InvenioIIIFManifest()
     assert 'invenio-iiif-manifest' not in app.extensions
     ext.init_app(app)
     assert 'invenio-iiif-manifest' in app.extensions
