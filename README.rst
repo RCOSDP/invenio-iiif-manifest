@@ -8,19 +8,19 @@
 =======================
 
 .. image:: https://img.shields.io/travis/inveniosoftware/invenio-iiif-manifest.svg
-        :target: https://travis-ci.org/inveniosoftware/invenio-iiif-manifest
+        :target: https://travis-ci.com/RCOSDP/invenio-iiif-manifest
 
 .. image:: https://img.shields.io/coveralls/inveniosoftware/invenio-iiif-manifest.svg
         :target: https://coveralls.io/r/inveniosoftware/invenio-iiif-manifest
 
 .. image:: https://img.shields.io/github/tag/inveniosoftware/invenio-iiif-manifest.svg
-        :target: https://github.com/inveniosoftware/invenio-iiif-manifest/releases
+        :target: https://github.com/RCOSDP/invenio-iiif-manifest/releases
 
 .. image:: https://img.shields.io/pypi/dm/invenio-iiif-manifest.svg
         :target: https://pypi.python.org/pypi/invenio-iiif-manifest
 
 .. image:: https://img.shields.io/github/license/inveniosoftware/invenio-iiif-manifest.svg
-        :target: https://github.com/inveniosoftware/invenio-iiif-manifest/blob/master/LICENSE
+        :target: https://github.com/RCOSDP/invenio-iiif-manifest/blob/master/LICENSE
 
 Invenio module for generating iiif manifest par a record on invenio.
 
