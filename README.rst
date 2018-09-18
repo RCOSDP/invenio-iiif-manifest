@@ -26,8 +26,8 @@ Invenio module for generating iiif manifest par a record on invenio.
 
 If user upload some image files to Invenio, the module automatically generate IIIF presentation manifest JSON file. Accessing bellow API, user can get the manifest.
 
-.. code-block:: text
-        {example.com}/record/{record_id}/iiif/manifest.json
+
+http(s)://{example.com}/record/{record_id}/iiif/manifest.json
 
 
 By passing the manifest to the IIIF viewer such as Mirador, it is possible to preview the image files on the record.
