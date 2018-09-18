@@ -27,7 +27,6 @@ env:
   - REQUIREMENTS=devel
 
 python:
-  - "2.7"
   - "3.5"
 
 before_install:
@@ -56,6 +55,6 @@ deploy:
   distributions: "compile_catalog sdist bdist_wheel"
   on:
     tags: true
-    python: "2.7"
+    python: "3.5"
     repo: inveniosoftware/invenio-iiif-manifest
     condition: $DEPLOY = true
