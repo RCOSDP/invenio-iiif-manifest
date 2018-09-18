@@ -22,11 +22,15 @@
 .. image:: https://img.shields.io/github/license/inveniosoftware/invenio-iiif-manifest.svg
         :target: https://github.com/inveniosoftware/invenio-iiif-manifest/blob/master/LICENSE
 
-Invenio module that adds more fun to the platform.
+Invenio module for generating iiif manifest par a record on invenio.
 
-*This is an experimental developer preview release.*
+If user upload some image files to Invenio, the module automatically generate IIIF presentation manifest JSON file. Accessing bellow API, user can get the manifest.
 
-TODO: Please provide feature overview of module
+~~~~
+{example.com}/record/{record_id}/iiif/manifest.json
+~~~~
 
-Further documentation is available on
-https://invenio-iiif-manifest.readthedocs.io/
+By passing the manifest to the IIIF viewer such as Mirador, it is possible to preview the image files on the record.
+
+
+This module depends on invenio-iiif as it needs to access IIIF Image API.
