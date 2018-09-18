@@ -18,7 +18,8 @@ from .api import can_generate
 
 
 def manifest_json(pid, record, template=None, **kwargs):
-    """Render a iiif manifest.json."""
+    """Render a iiif manifest.json from record metadata.
+    """
 
     files = record.dumps()['_files']
     record_meta = record.dumps()['_deposit']
