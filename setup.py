@@ -2,8 +2,8 @@
 #
 # Copyright (C) 2018 NII.
 #
-# invenio-iiif-manifest is free software; you can redistribute it and/or modify it
-# under the terms of the MIT License; see LICENSE file for more details.
+# invenio-iiif-manifest is free software; you can redistribute it and/or modify
+# it under the terms of the MIT License; see LICENSE file for more details.
 
 """Invenio module that adds more fun to the platform."""
 
@@ -60,11 +60,11 @@ setup(
     version=version,
     description=__doc__,
     long_description=readme + '\n\n' + history,
-    keywords='invenio TODO',
+    keywords='invenio, iiif-presentation, invenio-iiif',
     license='MIT',
     author='NII',
     author_email='wekosoftware@nii.ac.jp',
-    url='https://github.com/inveniosoftware/invenio-iiif-manifest',
+    url='https://github.com/RCOSDP/invenio-iiif-manifest',
     packages=packages,
     zip_safe=False,
     include_package_data=True,
@@ -76,17 +76,6 @@ setup(
         'invenio_i18n.translations': [
             'messages = invenio_iiif_manifest',
         ],
-        # TODO: Edit these entry points to fit your needs.
-        # 'invenio_access.actions': [],
-        # 'invenio_admin.actions': [],
-        # 'invenio_assets.bundles': [],
-        # 'invenio_base.api_apps': [],
-        # 'invenio_base.api_blueprints': [],
-        # 'invenio_base.blueprints': [],
-        # 'invenio_celery.tasks': [],
-        # 'invenio_db.models': [],
-        # 'invenio_pidstore.minters': [],
-        # 'invenio_records.jsonresolver': [],
     },
     extras_require=extras_require,
     install_requires=install_requires,
@@ -100,8 +89,6 @@ setup(
         'Programming Language :: Python',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Development Status :: 1 - Planning',
