@@ -2,8 +2,9 @@
 #
 # Copyright (C) 2018 NII.
 #
-# invenio-iiif-manifest is free software; you can redistribute it and/or modify it
-# under the terms of the MIT License; see LICENSE file for more details.
+# invenio-previewer-extention is free software; you can redistribute it and/or
+# modify it under the terms of the MIT License; see LICENSE file for more
+# details.
 
 notifications:
   email: false
@@ -15,7 +16,6 @@ language: python
 matrix:
   fast_finish: true
   allow_failures:
-    # To allow failures, you need to specify the full environment
     - env: REQUIREMENTS=devel
 
 cache:
@@ -49,12 +49,12 @@ after_success:
 
 deploy:
   provider: pypi
-  user: inveniosoftware
+  user: RCOSDP
   password:
     secure: TODO:PYPISECUREHASH
   distributions: "compile_catalog sdist bdist_wheel"
   on:
     tags: true
     python: "3.5"
-    repo: inveniosoftware/invenio-iiif-manifest
+    repo: RCOSDP/invenio-iiif-manifest
     condition: $DEPLOY = true
