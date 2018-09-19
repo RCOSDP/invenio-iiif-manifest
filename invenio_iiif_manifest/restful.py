@@ -9,22 +9,18 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, render_template
-from flask_babelex import gettext as _
-from flask import current_app, request, url_for, jsonify
+from flask import abort
+from flask import jsonify
 
-from .api import generate_iiif_manifest
-from .api import can_generate
+from .api import can_generate, generate_iiif_manifest
 
 
 def manifest_json(pid, record, template=None, **kwargs):
-    """Render a iiif manifest.json from record metadata.
-    """
-
-    files = record.dumps()['_files']
-    record_meta = record.dumps()['_deposit']
+    """Render a iiif manifest json from record metadata."""
+    files = record.dumps()["_files"]
+    record_meta = record.dumps()["_deposit"]
 
     if can_generate(files):
         return jsonify(generate_iiif_manifest(pid, record_meta, files))
     else:
-        return jsonify({'message': 'The requested URL was not found on the server.', 'status':404})
+        abort(404)

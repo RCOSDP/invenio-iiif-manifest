@@ -7,10 +7,6 @@
 
 """Invenio module that adds more fun to the platform."""
 
-from __future__ import absolute_import, print_function
-
-from flask_babelex import gettext as _
-
 from . import config
 
 
@@ -19,31 +15,29 @@ class InvenioIIIFManifest(object):
 
     def __init__(self, app=None):
         """Extension initialization."""
-
         if app:
             self.init_app(app)
 
     def init_app(self, app):
         """Flask application initialization."""
         self.init_config(app)
-        app.extensions['invenio-iiif-manifest'] = self
+        app.extensions["invenio-iiif-manifest"] = self
 
     def init_config(self, app):
         """Initialize configuration."""
-
-        if 'BASE_TEMPLATE' in app.config:
+        if "BASE_TEMPLATE" in app.config:
             app.config.setdefault(
-                'INVENIO_IIIF_MANIFEST_BASE_TEMPLATE',
-                app.config['BASE_TEMPLATE'],
+                "INVENIO_IIIF_MANIFEST_BASE_TEMPLATE",
+                app.config["BASE_TEMPLATE"],
             )
 
-        with_endpoints = app.config.get('RECORDS_UI_ENDPOINTS')
+        with_endpoints = app.config.get("RECORDS_UI_ENDPOINTS")
         for k in dir(config):
-            if k.startswith('INVENIO_IIIF_MANIFEST_'):
+            if k.startswith("INVENIO_IIIF_MANIFEST_"):
                 app.config.setdefault(k, getattr(config, k))
 
             else:
-                for n in ['RECORDS_UI_ENDPOINTS']:
+                for n in ["RECORDS_UI_ENDPOINTS"]:
                     if k == n and with_endpoints:
                         app.config.setdefault(n, {})
                         app.config[n].update(getattr(config, k))
