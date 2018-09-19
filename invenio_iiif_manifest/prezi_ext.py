@@ -37,7 +37,6 @@ class ManifestFactory(_ManifestFactory):
     def image(self, ident, label="", iiif=False, region="full",
               size="full", extension="jpg"):
         """This code is extention purpose."""
-
         if not ident:
             raise RequirementError(
                 ("Images must have a real identity (Image['@id'] cannot"
@@ -49,7 +48,7 @@ class ManifestFactory(_ManifestFactory):
 
 class Annotation(_Annotation):
     """This code is extention purpose."""
-    
+
     def image(self, ident="", label="", iiif=False, extension="jpg"):
         """Create Image body."""
         img = self._factory.image(ident, label, iiif, extension=extension)
@@ -58,6 +57,8 @@ class Annotation(_Annotation):
 
 
 class Image(_Image):
+    """This code is extention purpose."""
+    
     def __init__(self, factory, ident, label, iiif=False, region="full",
                  size="full", extension="jpg"):
         """This code is extention purpose."""
