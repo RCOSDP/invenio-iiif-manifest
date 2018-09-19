@@ -26,6 +26,8 @@ https://github.com/iiif-prezi/iiif-prezi
 
 
 class ManifestFactory(_ManifestFactory):
+    """This code is extention purpose."""
+
     def annotation(self, ident="", label="", mdhash={}):
         """This code is extention purpose."""
         if ident and not is_http_uri(ident):
@@ -47,6 +49,7 @@ class ManifestFactory(_ManifestFactory):
 
 class Annotation(_Annotation):
     """This code is extention purpose."""
+    
     def image(self, ident="", label="", iiif=False, extension="jpg"):
         """Create Image body."""
         img = self._factory.image(ident, label, iiif, extension=extension)
