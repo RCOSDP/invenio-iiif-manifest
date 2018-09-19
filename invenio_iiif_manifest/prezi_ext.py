@@ -5,11 +5,6 @@
 # invenio-iiif-manifest is free software; you can redistribute it and/or modify
 # it under the terms of the MIT License; see LICENSE file for more details.
 
-from iiif_prezi.factory import ManifestFactory as _ManifestFactory
-from iiif_prezi.factory import Annotation as _Annotation
-from iiif_prezi.factory import Image as _Image
-from iiif_prezi.factory import ImageService
-
 """Extension of iiif-prezi module.
 
 The iiif-prezi module can not indicate image format of IIIF Image API.
@@ -20,9 +15,17 @@ Attention: Should be indicate formats that IIIF Image API server can deliver.
 
 There is no function which can export a manifest file with Image API on for
 IIIF Presentation API IIIF.
-The iiif-prezi detail is:
+
+iiif-prezi detail
+-----------------
+
 https://github.com/iiif-prezi/iiif-prezi
 """
+
+from iiif_prezi.factory import ManifestFactory as _ManifestFactory
+from iiif_prezi.factory import Annotation as _Annotation
+from iiif_prezi.factory import Image as _Image
+from iiif_prezi.factory import ImageService
 
 
 class ManifestFactory(_ManifestFactory):
@@ -58,9 +61,9 @@ class Annotation(_Annotation):
 
 class Image(_Image):
     """This code is extention purpose."""
-    
+
     def __init__(self, factory, ident, label, iiif=False, region="full",
-                 size="full", extension="jpg"):
+        size="full", extension="jpg"):
         """This code is extention purpose."""
         self._factory = factory
         self.type = self.__class__._type
@@ -70,10 +73,11 @@ class Image(_Image):
         self.width = 0
         self._identifier = ""
 
-        mime_type = {"jpg": "image/jpeg",
-                     "jpeg": "image/jpeg",
-                     "png": "image/png"
-                     }
+        mime_type = {
+            "jpg": "image/jpeg",
+            "jpeg": "image/jpeg",
+            "png": "image/png"
+        }
 
         if label:
             self.set_label(label)
