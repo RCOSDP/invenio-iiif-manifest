@@ -13,3 +13,4 @@ invenio-rest
 invenio-records-files
 invenio-theme>=1.0.0a14
 SQLAlchemy-Continuum==1.3.4
+iiif-prezi==0.2.9

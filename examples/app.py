@@ -63,7 +63,7 @@ from invenio_iiif.previewer import blueprint as blueprint_iiif
 from invenio_jsonschemas import InvenioJSONSchemas
 from invenio_pidstore import InvenioPIDStore
 from invenio_pidstore.providers.recordid import RecordIdProvider
-from invenio_previewer import InvenioPreviewer
+#from invenio_previewer import InvenioPreviewer
 from invenio_records import InvenioRecords, Record
 from invenio_records_files.links import default_bucket_link_factory
 from invenio_records_files.models import RecordsBuckets
@@ -77,9 +77,9 @@ from invenio_rest import InvenioREST
 #from invenio_search_ui import InvenioSearchUI
 from invenio_theme import InvenioTheme
 
-from .create_object import create_object
+from create_object import create_object
 
-from invenio_iiif_manifest import invenioiiifmanifest
+from invenio_iiif_manifest import InvenioIIIFManifest
 
 # Create Flask application
 app = Flask(__name__)
@@ -117,11 +117,11 @@ InvenioAssets(app)
 #InvenioAccounts(app)
 InvenioRecords(app)
 InvenioRecordsUI(app)
-InvenioSearch(app)
-InvenioSearchUI(app)
-InvenioPreviewer(app)
+#InvenioSearch(app)
+#InvenioSearchUI(app)
+#InvenioPreviewer(app)
 InvenioIIIFAPI(app)
-invenioiiifmanifest(app)
+InvenioIIIFManifest(app)
 
 app.register_blueprint(blueprint_files_rest)
 app.register_blueprint(blueprint_iiif)
@@ -144,7 +144,7 @@ def files():
 
     # Create location
     loc = Location(name='local', uri=bucket_path, default=True)
-    db.session.add(loc) # added by yohei
+    db.session.add(loc)
     db.session.commit()
 
     # Bucket
