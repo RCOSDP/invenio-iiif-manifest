@@ -1,0 +1,20 @@
+{
+    "metadata": [
+        {
+            "_deposit": {
+                "title": "JPG, PNG",
+                "description": "JPG, PNG for a preview demo"
+            },
+            "_files": [
+                {
+                    "path": "sample_files/jpgfile.jpg",
+                    "previewer": ""
+                },
+                {
+                    "path": "sample_files/pngfile.png",
+                    "previewer": ""
+                }
+            ]
+        }
+    ]
+}
