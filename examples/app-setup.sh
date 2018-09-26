@@ -53,6 +53,3 @@ cd ..
 flask db init
 flask db create
 flask fixtures files
-
-#flask users create info@inveniosoftware.org --password 123456
-# flask users activate info@inveniosoftware.org
