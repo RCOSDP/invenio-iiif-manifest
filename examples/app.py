@@ -47,11 +47,11 @@ import os
 from os.path import dirname, join
 
 from flask import Flask
-from invenio_access import InvenioAccess
-from invenio_accounts import InvenioAccounts
+#from invenio_access import InvenioAccess
+#from invenio_accounts import InvenioAccounts
 from invenio_accounts.views.settings import blueprint as blueprint_accounts
-from invenio_accounts_rest import InvenioAccountsREST
-from invenio_admin import InvenioAdmin
+#from invenio_accounts_rest import InvenioAccountsREST
+#from invenio_admin import InvenioAdmin
 from invenio_assets import InvenioAssets
 from invenio_db import InvenioDB, db
 from invenio_files_rest import InvenioFilesREST
@@ -67,14 +67,14 @@ from invenio_previewer import InvenioPreviewer
 from invenio_records import InvenioRecords, Record
 from invenio_records_files.links import default_bucket_link_factory
 from invenio_records_files.models import RecordsBuckets
-from invenio_records_rest import InvenioRecordsREST
-from invenio_records_rest.facets import terms_filter
+#from invenio_records_rest import InvenioRecordsREST
+#from invenio_records_rest.facets import terms_filter
 from invenio_records_rest.utils import PIDConverter
 from invenio_records_ui import InvenioRecordsUI
 from invenio_records_ui.views import create_blueprint_from_app
 from invenio_rest import InvenioREST
-from invenio_search import InvenioSearch
-from invenio_search_ui import InvenioSearchUI
+#from invenio_search import InvenioSearch
+#from invenio_search_ui import InvenioSearchUI
 from invenio_theme import InvenioTheme
 
 from .create_object import create_object
@@ -113,8 +113,8 @@ InvenioTheme(app)
 InvenioREST(app)
 InvenioFilesREST(app)
 InvenioAssets(app)
-InvenioAccess(app)
-InvenioAccounts(app)
+#InvenioAccess(app)
+#InvenioAccounts(app)
 InvenioRecords(app)
 InvenioRecordsUI(app)
 InvenioSearch(app)
