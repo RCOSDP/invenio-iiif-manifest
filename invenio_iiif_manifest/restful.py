@@ -7,10 +7,8 @@
 
 """Invenio module that adds more fun to the platform."""
 
-from __future__ import absolute_import, print_function
 
-from flask import abort
-from flask import jsonify
+from flask import abort, jsonify
 
 from .api import can_generate, generate_iiif_manifest
 

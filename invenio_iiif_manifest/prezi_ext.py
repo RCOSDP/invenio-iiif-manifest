@@ -22,10 +22,10 @@ iiif-prezi detail
 https://github.com/iiif-prezi/iiif-prezi
 """
 
-from iiif_prezi.factory import ManifestFactory as _ManifestFactory
 from iiif_prezi.factory import Annotation as _Annotation
 from iiif_prezi.factory import Image as _Image
 from iiif_prezi.factory import ImageService
+from iiif_prezi.factory import ManifestFactory as _ManifestFactory
 
 
 class ManifestFactory(_ManifestFactory):
