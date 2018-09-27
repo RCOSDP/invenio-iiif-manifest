@@ -54,10 +54,8 @@ from invenio_assets import InvenioAssets
 from invenio_db import InvenioDB, db
 from invenio_files_rest import InvenioFilesREST
 from invenio_files_rest.models import Bucket, Location
-from invenio_files_rest.views import blueprint as blueprint_files_rest
 from invenio_i18n import InvenioI18N
 from invenio_iiif import InvenioIIIFAPI
-from invenio_iiif.previewer import blueprint as blueprint_iiif
 from invenio_records import InvenioRecords, Record
 from invenio_records_rest.utils import PIDConverter
 from invenio_records_ui import InvenioRecordsUI
@@ -105,9 +103,6 @@ InvenioRecords(app)
 InvenioRecordsUI(app)
 InvenioIIIFAPI(app)
 InvenioIIIFManifest(app)
-
-app.register_blueprint(blueprint_files_rest)
-app.register_blueprint(blueprint_iiif)
 
 app.register_blueprint(create_blueprint_from_app(app))
 
