@@ -63,7 +63,7 @@ class Image(_Image):
     """This code is extention purpose."""
 
     def __init__(self, factory, ident, label, iiif=False, region="full",
-        size="full", extension="jpg"):
+                 size="full", extension="jpg"):
         """This code is extention purpose."""
         self._factory = factory
         self.type = self.__class__._type
