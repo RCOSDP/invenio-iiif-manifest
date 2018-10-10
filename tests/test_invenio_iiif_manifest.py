@@ -31,10 +31,10 @@ def test_init():
     assert 'invenio-iiif-manifest' in app.extensions
 
 
-def test_view(app):
+def test_view(db_init):
     """Test view."""
-    invenioiiifmanifest(app)
+    InvenioIIIFManifest(app)
     with app.test_client() as client:
-        res = client.get("/")
+        res = client.get("/record/1/iiif/manifest.json")
         assert res.status_code == 200
         assert 'Welcome to invenio-iiif-manifest' in str(res.data)
