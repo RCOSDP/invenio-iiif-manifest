@@ -8,6 +8,7 @@
 import os
 from uuid import uuid4
 
+from flask_iiif import IIIF_FORMATS
 from invenio_db import InvenioDB, db
 from invenio_files_rest.models import ObjectVersion
 from invenio_pidstore.providers.recordid import RecordIdProvider
@@ -16,18 +17,25 @@ from invenio_records_files.api import Record as RecordFile
 from invenio_records_files.models import RecordsBuckets
 
 
-def create_files_object(bucket, files_dict):
+# This files code should be replace, if invenio-records module become formal
+# version.
+
+def generate_files_metadata(bucket, files_dict):
+    """Generator of files metadata on record metadata."""
+
     files_meta = []
-    iiif_files = 0
-    iiif_adaptable_ext = ['.jpg','.jpeg','.png','.gif','.tif','tiff']
+    num_of_iiif_valid_files = 0
+    # Supported ext: gif, jpeg, jpg, pdf, png, tif
+    # If you want to add any extention, you have to customize flask-iiif module.
+    iiif_adaptable_ext = [k for k, v in IIIF_FORMATS.items()]
 
     for file_dict in files_dict:
         file_path = file_dict['path']
         file_name = os.path.basename(file_path)
-        root, ext = os.path.splitext(file_path)
+        ext = os.path.splitext(file_path)[1][1:].lower()
 
-        if ext.lower() in iiif_adaptable_ext:
-            iiif_files += 1
+        if ext in iiif_adaptable_ext:
+            num_of_iiif_valid_files += 1
 
         with open(file_path, 'rb') as stream:
             obj = ObjectVersion.create(bucket, file_name, stream=stream)
@@ -43,7 +51,7 @@ def create_files_object(bucket, files_dict):
                     'previewer': file_dict['previewer'],
                 }
             )
-    return files_meta, iiif_files
+    return files_meta, iiif_valid_files
 
 
 def create_object(bucket, record_dict):
@@ -52,23 +60,24 @@ def create_object(bucket, record_dict):
     rec_uuid = uuid4()
     provider = RecordIdProvider.create(object_type='rec', object_uuid=rec_uuid)
 
-    files, iiif_files = create_files_object(bucket, record_dict['_files'])
+    files_meta, num_of_iiif_valid_files = generate_files_metadata(
+        bucket, record_dict['_files']
+    )
 
+    # If there are any iiif valid image files, iiif manifest api is added on
+    # record metadata.
     iiif_manifest_url = ''
-    if iiif_files > 0:
+    if num_of_iiif_valid_files > 0:
         iiif_manifest_url = '/record/{0}/iiif/manifest.json'.format(
             provider.pid.pid_value
         )
-
     deposit_dict = record_dict['_deposit']
     deposit_dict['iiif_manifest'] = iiif_manifest_url
-    #deposit = str(deposit_dict)
-
 
     data = {
         'pid_value': provider.pid.pid_value,
         '_deposit': deposit_dict,
-        '_files': files,
+        '_files': files_meta,
     }
 
     # from invenio_records_files.api import Record as RecordFile
