@@ -19,7 +19,6 @@ pip install -e ..
 npm install -g node-sass clean-css clean-css-cli requirejs uglify-js
 flask npm
 cd static ; npm install ; cd ..
-
 mkdir -p static/scss/invenio_search_ui
 touch static/scss/invenio_search_ui/search.scss
 mkdir -p static/js/invenio_deposit
@@ -41,15 +40,7 @@ if [ -e test.db ]; then
   rm test.db
 fi
 
-if [ -e sample_files ]; then
-  rm -R sample_files
-fi
-mkdir sample_files
-cd sample_files
-curl http://agora.ex.nii.ac.jp/digital-typhoon/kml/globe/latest/4.jpg -o jpgfile.jpg
-curl https://www.nii.ac.jp/en/news/2017/12/20171225-02.png -o pngfile.png
-cd ..
 
+# Create the database
 flask db init
 flask db create
-flask fixtures files

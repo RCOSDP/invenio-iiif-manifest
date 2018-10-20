@@ -14,7 +14,6 @@ fixture data by running:
 
 .. code-block:: console
 
-   $ pip install -e .[all]
    $ cd examples
    $ ./app-setup.sh
    $ ./app-fixtures.sh
@@ -31,6 +30,10 @@ and open the example application in your browser:
 .. code-block:: console
 
     $ open http://127.0.0.1:5000/
+
+View iiif manifest in your browser::
+
+    http://localhost:5000/record/1/iiif/manifest.json
 
 To reset the example application run:
 
