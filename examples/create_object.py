@@ -8,7 +8,7 @@
 import os
 from uuid import uuid4
 
-from flask_iiif import IIIF_FORMATS
+from flask_iiif.config import IIIF_FORMATS
 from invenio_db import InvenioDB, db
 from invenio_files_rest.models import ObjectVersion
 from invenio_pidstore.providers.recordid import RecordIdProvider
