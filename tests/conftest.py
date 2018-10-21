@@ -7,8 +7,10 @@
 
 """Pytest configuration."""
 
+import json
 import os
 import shutil
+import sqlite3
 import tempfile
 
 import pytest
@@ -16,10 +18,13 @@ from flask import Flask
 from flask_babelex import Babel
 from invenio_access import InvenioAccess
 from invenio_accounts import InvenioAccounts
-from invenio_db import InvenioDB
+from invenio_db import InvenioDB, db
 from invenio_files_rest import InvenioFilesREST
 from invenio_iiif import InvenioIIIFAPI
+from invenio_records import InvenioRecords
+from invenio_records.models import RecordMetadata
 from invenio_records_rest.utils import PIDConverter
+from invenio_records_ui import InvenioRecordsUI
 from invenio_rest import InvenioREST
 
 from invenio_iiif_manifest import InvenioIIIFManifest
@@ -71,12 +76,24 @@ def app(base_app):
     InvenioAccess(base_app)
     InvenioDB(base_app)
     InvenioFilesREST(base_app)
+    InvenioRecords(base_app)
+    InvenioRecordsUI(base_app)
     InvenioREST(base_app)
     InvenioIIIFAPI(base_app)
     InvenioIIIFManifest(base_app)
 
     with base_app.app_context():
         yield base_app
+
+
+@pytest.fixture()
+def pid1_meta_on_db(app):
+    """Image files on db."""
+    conn = sqlite3.connect("examples/test.db")
+    cur = conn.cursor()
+    cur.execute("select json from records_metadata limit 1")
+    file_meta = json.loads(cur.fetchall()[0][0])
+    return file_meta
 
 
 @pytest.fixture()

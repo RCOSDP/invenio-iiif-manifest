@@ -45,6 +45,11 @@ def test_generate_identifier_for_invenio_iiif(app, images_meta1):
     assert identifier == "object_bucket:object_version:jpgfile.jpg"
 
 
-def test_generate_iiif_manifest(app, pid, record_meta, images_meta1):
-    """Test iiif manifest"""
-    generate_iiif_manifest(pid, record_meta, images_meta1)
+# If you want to below test, you have to do "flask run" and remove comments
+# out.
+# def test_generate_iiif_manifest(app, pid1_meta_on_db):
+#     """Test iiif manifest"""
+#     record_meta = pid1_meta_on_db['_deposit']
+#     images_meta = pid1_meta_on_db['_files']
+#     pid = 1
+#     generate_iiif_manifest(pid, record_meta, images_meta)
