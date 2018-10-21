@@ -178,7 +178,7 @@ def docx_meta():
 
 @pytest.fixture()
 def record_meta():
-    """record metadata set."""
+    """Record metadata set."""
     metadata = {
         "title": "IIIF test record",
         "description": "This is test record.",

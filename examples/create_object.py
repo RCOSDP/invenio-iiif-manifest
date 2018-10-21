@@ -16,7 +16,6 @@ from invenio_records import Record
 from invenio_records_files.api import Record as RecordFile
 from invenio_records_files.models import RecordsBuckets
 
-
 # This files code should be replace, if invenio-records module become formal
 # version.
 

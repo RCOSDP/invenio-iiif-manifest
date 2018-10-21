@@ -10,13 +10,9 @@
 from flask import Flask
 
 from invenio_iiif_manifest import InvenioIIIFManifest
-from invenio_iiif_manifest.api import (
-    can_generate,
-    can_preview,
-    generate_identifier_pid_key,
-    generate_identifier_for_invenio_iiif,
+from invenio_iiif_manifest.api import can_generate, can_preview, \
+    generate_identifier_for_invenio_iiif, generate_identifier_pid_key, \
     generate_iiif_manifest
-)
 
 
 def test_can_generate(app, images_meta1, images_meta2, docx_meta):
