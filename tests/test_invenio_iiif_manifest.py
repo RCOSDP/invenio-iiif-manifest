@@ -31,7 +31,7 @@ def test_init():
     assert 'invenio-iiif-manifest' in app.extensions
 
 
-def test_view(db_init):
+def test_view(app):
     """Test view."""
     InvenioIIIFManifest(app)
     with app.test_client() as client:

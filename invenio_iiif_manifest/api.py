@@ -53,10 +53,14 @@ def generate_iiif_manifest(pid, record_meta, files):
     for file in files:
         if can_preview(file["key"]):
             if config.IIIF_MANIFEST_IMAGE_API_IDENTIFIER in ["default", None]:
-                identifiers.append(generate_identifier_for_invenio_iiif(file))
+                identifiers.append(
+                    generate_identifier_for_invenio_iiif(file)
+                )
 
             elif config.IIIF_MANIFEST_IMAGE_API_IDENTIFIER == "pid:key":
-                identifiers.append(generate_identifier_pid_key(pid, file))
+                identifiers.append(
+                    generate_identifier_pid_key(pid, file)
+                )
 
     if identifiers == []:
         abort(404)

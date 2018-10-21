@@ -60,45 +60,131 @@ def base_app(instance_path):
         ),
     )
 
-    Babel(app_)
-    InvenioAccounts(app_)
-    InvenioAccess(app_)
-    InvenioDB(app_)
-    InvenioFilesREST(app_)
-    InvenioREST(app_)
-    InvenioIIIFAPI(app_)
-    InvenioIIIFManifest(app_)
-
     return app_
 
 
 @pytest.yield_fixture()
 def app(base_app):
     """Flask application fixture."""
+    Babel(base_app)
+    InvenioAccounts(base_app)
+    InvenioAccess(base_app)
+    InvenioDB(base_app)
+    InvenioFilesREST(base_app)
+    InvenioREST(base_app)
+    InvenioIIIFAPI(base_app)
+    InvenioIIIFManifest(base_app)
+
     with base_app.app_context():
         yield base_app
 
 
 @pytest.fixture()
-def db_init(app):
-    """Create records with data."""
-    bucket_path = os.path.join(os.path.dirname(__file__), 'bucket')
+def images_meta1():
+    """Image files metadata set."""
+    metadata = [
+        {
+            "bucket": "object_bucket",
+            "version_id": "object_version",
+            "key": "jpgfile.jpg",
+            "previewer": ""
+        },
+        {
+            "bucket": "object_bucket",
+            "version_id": "object_version",
+            "key": "pngfile.png",
+            "previewer": ""
+        }
+    ]
+    return metadata
 
-    if not os.path.isdir(bucket_path):
-        os.makedirs(bucket_path)
 
-    # Create location
-    loc = Location(name='local', uri=bucket_path, default=True)
-    db.session.add(loc)
-    db.session.commit()
+@pytest.fixture()
+def images_meta2():
+    """Image files metadata set."""
+    metadata = [
+        {
+            "bucket": "object_bucket",
+            "version_id": "object_version",
+            "key": "jpgfile.jpg",
+            "previewer": ""
+        },
+        {
+            "bucket": "object_bucket",
+            "version_id": "object_version",
+            "key": "example.docx",
+            "previewer": ""
+        }
+    ]
+    return metadata
 
-    # Bucket
-    bucket = Bucket.create(location=loc)
 
-    # Example files from the data folder
-    with open('data/metadata.json') as file:
-        example_records = json.load(file)['metadata']
+@pytest.fixture()
+def docx_meta():
+    """Non-image files metadata set."""
+    metadata = [
+        {
+            "bucket": "object_bucket",
+            "version_id": "object_version",
+            "key": "sample1.docx",
+            "previewer": ""
+        },
+        {
+            "bucket": "object_bucket",
+            "version_id": "object_version",
+            "key": "sample2.docx",
+            "previewer": ""
+        }
+    ]
+    return metadata
 
-        # Create records
-        for record in example_records:
-            create_object(bucket, record)
+
+@pytest.fixture()
+def docx_meta():
+    """Non-image files metadata set."""
+    metadata = [
+        {
+            "bucket": "object_bucket",
+            "version_id": "object_version",
+            "key": "sample1.docx",
+            "previewer": ""
+        },
+        {
+            "bucket": "object_bucket",
+            "version_id": "object_version",
+            "key": "sample2.docx",
+            "previewer": ""
+        }
+    ]
+    return metadata
+
+
+@pytest.fixture()
+def record_meta():
+    """record metadata set."""
+    metadata = {
+        "title": "IIIF test record",
+        "description": "This is test record.",
+    }
+    return metadata
+
+
+@pytest.fixture()
+def image_path():
+    """Image file path."""
+    return "sample.png"
+
+
+@pytest.fixture()
+def docx_path():
+    """Not image file path."""
+    return "sample.docx"
+
+
+@pytest.fixture()
+def pid():
+    """PID object."""
+    class pid(object):
+        pid_value = 1
+
+    return pid
