@@ -5,16 +5,20 @@
 # invenio-iiif-manifest is free software; you can redistribute it and/or modify
 # it under the terms of the MIT License; see LICENSE file for more details.
 
-# TODO: Generate this manifest file by running the following commands:
-#
-#  git init
-#  git add -A
-#  pip install -e .[all]
-#  check-manifest -u
-
-# Check manifest will not automatically add these two files:
+include *.rst
+include *.sh
+include *.txt
 include .dockerignore
 include .editorconfig
 include .tx/config
+include LICENSE
+include babel.ini
+include config
+include docs/requirements.txt
+include pytest.ini
+include tox.ini
 prune docs/_build
-recursive-include invenio_iiif_manifest *.po *.pot *.mo
+recursive-include docs *.bat *.py *.rst Makefile
+recursive-include invenio_iiif_manifest *.html *.mo *.po *.pot *.xml *.py
+recursive-include tests *.xml *.py
+recursive-include examples *.sh *.py .gitignore *.txt

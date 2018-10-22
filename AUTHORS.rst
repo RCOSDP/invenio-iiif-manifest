@@ -6,6 +6,4 @@
 Authors
 =======
 
-Invenio module that adds more fun to the platform.
-
-- NII <wekosoftware@nii.ac.jp>
+- Yohei Hayashi
